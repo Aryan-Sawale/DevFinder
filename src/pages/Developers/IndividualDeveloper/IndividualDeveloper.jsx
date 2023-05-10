@@ -1,17 +1,20 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styles from './IndividualDeveloper.module.css'
 import {ProjectCard} from '../../../components/ProjectCard/ProjectCard'
 // import {ShortProjectCard} from '../IndividualDeveloper/ShortProjectCard'
-import ProjectImage from '../../../assets/banner5.jpg'
-import ProfileImage from '../../../assets/nalla.jpg'
+
 import {TiLocation} from 'react-icons/ti'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useAxios } from '../../../utils/useAxios'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Modal } from '../../../components/Modal/Modal'
+import { AuthContext } from '../../../context/AuthContext'
+import defaultImage from '../../../assets/default-image.svg'
 
 export const IndividualDeveloper = () => {
+
+  const {currentUUID} = useContext(AuthContext);
 
   const [profile, setProfile] = useState();
   const [project, setProject] = useState([]);
@@ -22,6 +25,9 @@ export const IndividualDeveloper = () => {
   const api = useAxios();
 
   const location = useLocation();
+
+  const defaultText = "No projects"
+  
   
 
   const fetchProfile = async () => {
@@ -35,22 +41,26 @@ export const IndividualDeveloper = () => {
     // projects
     const projectsResponse = await api.get(`${profileUrl}projects/`)
     console.log("projects", projectsResponse);
-    setProject(projectsResponse.data.results);
+    setProject(projectsResponse.data);
   }
   
   useEffect(() => {
     fetchProfile();
   }, [])
-  
-  const messageTest = {
-    "subject": "te kay asta?",
-    "body": "bruhhhhhh"
+
+  const [skills, setSkills] = useState([]);
+
+  const fetchSkills = async () => {
+    const response = await api.get(`${location.state.url}skills/`);
+    console.log("skills", response);
+    setSkills(response.data);
   }
-  const sendMessage = async () => {
-    const profileUrl = location.state.url;
-    const response = await api.post(`${profileUrl}create-message/`, messageTest);
-    console.log(response);
-  }
+
+  useEffect(() => {
+    fetchSkills();
+  }, [])
+
+ 
 
   return (
     <>
@@ -59,7 +69,7 @@ export const IndividualDeveloper = () => {
             <div className={styles.developerProfile}>
               <div className={styles.developerCard}>
                 <div>
-                <img src={profile?.profileImage} className={styles.developerImage} alt="" />
+                <img src={profile?.profileImage || defaultImage}  className={styles.developerImage} alt="" />
                 </div>
                 <div>
                 <p className={styles.developerName}><b>{profile?.username}</b></p>
@@ -79,26 +89,7 @@ export const IndividualDeveloper = () => {
                 <h2><b>ABOUT ME</b></h2>
                 <p>{profile?.bio}</p>
               </div><hr />
-              <div className={styles.skillSection}>
-                <h2>SKILLS</h2>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-
-
-              </div><hr />
+              
               <h2>OTHER SKILLS</h2><br />
               <div className={styles.otherSkills}>
                 <button className={styles.otherSkillsBtn}>Communication</button>
@@ -110,13 +101,15 @@ export const IndividualDeveloper = () => {
                 <h2>PROJECTS</h2>
               <div className={styles.projectSection}>
               
-              {project.map((proj) => (
+              {project?.map((proj) => (
                 <ShortProjectCard
                 image={proj.featuredImage}
                 projectName={proj.title}
                 projectDeveloper={proj.owner}
+                
               />
-              ))}
+              
+              ) ) }
 
               {/* <ShortProjectCard
                 image={ProjectImage}

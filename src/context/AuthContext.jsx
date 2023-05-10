@@ -5,10 +5,15 @@ import { createContext } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
 import { baseURL } from '../utils/config';
+import { useNavigate } from 'react-router-dom';
+import toast, {Toaster} from 'react-hot-toast'
+
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
+
     const [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem("authTokens")
       ? JSON.parse(localStorage.getItem("authTokens"))
@@ -16,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     );
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    
     const [currentUUID, setCurrentUUID] = useState(() => {
       const storedUUID = localStorage.getItem("user");
       return storedUUID ? JSON.parse(storedUUID) : null;
@@ -45,9 +50,10 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(response.data);
         getUser(response.data.access);
       }
-      else (
-        alert("oopsie daisy")
-      )
+      else {
+        toast.error('Cannot log in. Please try again');
+        
+      }
     }
 
     const logoutUser = () => {
@@ -55,6 +61,8 @@ export const AuthProvider = ({ children }) => {
         setCurrentUUID(null);
         localStorage.removeItem("authTokens");
         localStorage.removeItem("user");
+        toast.success('You are logged out');
+        
     }
 
     
@@ -94,6 +102,8 @@ export const AuthProvider = ({ children }) => {
       console.log(response);
       localStorage.setItem("user", JSON.stringify(response.data.uuid));
       setCurrentUUID(response.data.uuid);
+      toast.success('Welcome to DevFinder!');
+      navigate(`/account`);
     }
 
     const contextData = {
@@ -110,8 +120,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
+      <>
         <AuthContext.Provider value={contextData}>
             {children}
         </AuthContext.Provider>
+        <Toaster />
+      </>
     )
 }

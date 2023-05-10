@@ -5,7 +5,7 @@ import {FiChevronDown} from 'react-icons/fi'
 import Background from '../../assets/bg-img.png' 
 import { Link } from 'react-router-dom'
 import Atharva from '../../assets/nalla.jpg'
-import Ak from '../../assets/ak.jpg'
+import Ak from '../../assets/Ak.jpg'
 import Dhanya from '../../assets/dhanya2.jpg'
 import Typed from 'react-typed'
 import {FaFolder} from 'react-icons/fa'
@@ -92,7 +92,7 @@ export const Home = () => {
           image = {Atharva}
           name="Atharva Bhide"
           position="ML/Backend Engineer"
-          bio="The sun was setting behind the mountains, casting a warm orange glow nt, letting the peace and tranquility of the moment wash over me. When I opened them again, I saw a deer grazing nearby, looking up at me curiously before bounding away into the woods. It was a moment of pure magic, one that I would never forget."
+          bio="Hello, I am Atharva Bhide and I am ML/Backend Engineer with interest in Computer Vision, NLP and time series analysis as well. My experience while developing DevFinder was full of excitement and challenges. Right from when we came up with the idea for building a social media for college developers, to building an MVP for it, the journey has been amazing! Looking forward to adding more and more features in the product and improving the user experience along with it!"
           skill1="Python"
           skill2="C++"
           skill3="Tensorflow"
@@ -116,7 +116,7 @@ export const Home = () => {
         image={Dhanya}
           name="Dhananjay Deshmukh"
           position="ML/Backend Engineer"
-          bio="The sun was setting behind the mountains, casting a warm orange glow nt, letting the peace and tranquility of the moment wash over me. When I opened them again, I saw a deer grazing nearby, looking up at me curiously before bounding away into the woods. It was a moment of pure magic, one that I would never forget."
+          bio="I'am a third year computer engineering student. I enjoy experimenting with machine learning and deep learning and still trying to grasp the vast field of backend engineering. DevFinder was an incredible learning experience and I thoroughly enjoyed working and contributing a team. We all have big dreams for DevFinder and hope to see them become reality soon"
           skill1="Python"
           skill2="C++"
           skill3="Tensorflow"

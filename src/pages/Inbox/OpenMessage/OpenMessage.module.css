@@ -1,8 +1,16 @@
 .wrapper{
-    height: 92vh;
-    position: relative;
-    background-color: #333;
-    padding: 2em;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.7);
+    transition: 0.5s all;
     
 }
 .msgContainer{
@@ -56,14 +64,4 @@
     top: 3%;
     right: 2%;
     cursor: pointer;
-}
-
-@media screen and (max-width: 780px) {
-    .msgContainer{
-        width: 100%;
-    }
-    .title{
-        font-size: 2em;
-    }
-    
 }

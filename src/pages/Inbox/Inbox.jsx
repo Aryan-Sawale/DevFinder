@@ -6,6 +6,9 @@ import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
 import { useAxios } from '../../utils/useAxios';
+import { OpenMessage } from './OpenMessage/OpenMessage'
+import { Link } from 'react-router-dom'
+import dhanya from '../../assets/dhanya2.jpg'
 
 export const Inbox = () => {
 
@@ -13,13 +16,14 @@ export const Inbox = () => {
   console.log(currentUUID);
   
   const [messages, setMessages] = useState([]);
+  const [show, setShow] = useState(false);
   
   const api = useAxios();
   
   const fetchMessages = async () => {
     const response = await api.get(`user-api/profiles/${currentUUID}/messages/`);
     console.log(response);
-    setMessages(response.data.results);
+    setMessages(response.data);
     console.log(messages);
   }
 
@@ -27,6 +31,9 @@ export const Inbox = () => {
     fetchMessages();
   }, [])
   
+  const [showModal, setShowModal] = useState(Array(messages.length).fill(false));
+
+
   /* 
   // const [selectedFile, setSelectedFile] = useState();
   // const checkNSFW = async () => {
@@ -55,9 +62,40 @@ export const Inbox = () => {
         New Messages
       </div><br />
       <div className={styles.messageList}>
-      <InboxCard
+
+      {messages?.map((items, index) =>
+      <>
+      
+      <div onClick={() => {
+      const newModalState = [...showModal];
+      newModalState[index] = true;
+      setShowModal(newModalState);
+      }}>
+        <InboxCard
+          key={items.id}
+          imageURL={dhanya}
+          username={items.name}
+          subject={items.subject}
+          content={items.body}
+          time={items.createdAt}
+      
         
       />
+      </div>
+      <OpenMessage 
+        onClose={() => {
+          const newModalState = [...showModal];
+          newModalState[index] = false;
+          setShowModal(newModalState);
+        }} 
+        show={showModal[index ]}
+        name={items.name}
+        subject={items.subject}
+        message={items.body} 
+      />
+      </>
+      )}
+      
 
 
       

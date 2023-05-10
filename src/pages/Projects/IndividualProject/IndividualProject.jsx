@@ -10,6 +10,7 @@ import { Modal } from '../../../components/Modal/Modal'
 import { useAxios } from '../../../utils/useAxios'
 
 import { ProjectReview } from '../../../components/ProjectReview/ProjectReview'
+import { baseURL } from '../../../utils/config';
 
 export const IndividualProject = (props) => {
 
@@ -18,6 +19,8 @@ export const IndividualProject = (props) => {
     const location = useLocation();
     const [show, setShow] = useState(false);
     const [reviews, setReviews] = useState([]);
+    const [reviewProfiles, setReviewProfiles] = useState([]);
+    const [tags, setTags] = useState([]);
 
     // console.log(location);
     const url = location.state?.url;
@@ -33,6 +36,7 @@ export const IndividualProject = (props) => {
       console.log(response);
       const project = response.data;
       setMyData(project);
+      setTags(project.tags.map((tag) => (tag.name)));
   
       console.log(`${url}reviews/`);
       try {
@@ -43,7 +47,7 @@ export const IndividualProject = (props) => {
         // const reversedReviews = reviewData.data.results.reverse();
         // setReviews(reversedReviews);
 
-        setReviews(reviewData.data.results)
+        setReviews(reviewData.data)
       } catch (err) {
         // handle errors for this specific await statement
         console.error("Error fetching reviews:", err);
@@ -87,14 +91,19 @@ export const IndividualProject = (props) => {
                 <div className={styles.projectTools}>
                     <h1>Tools And Stacks</h1><br />
                     <div className={styles.toolSection}>
+                        {tags.map((tag) => (
+                          <>
+                            <button className={styles.toolBtn}>{tag}</button>
+                          </>
+                        ))}
+                        {/* <button className={styles.toolBtn}>React</button>
                         <button className={styles.toolBtn}>React</button>
                         <button className={styles.toolBtn}>React</button>
-                        <button className={styles.toolBtn}>React</button>
-                        <button className={styles.toolBtn}>React</button>
+                        <button className={styles.toolBtn}>React</button> */}
                     </div>
                     <div className={styles.projectLinks}>
-                        <Link to="#">Demo Link</Link><br /><br />
-                        <Link to="#">Source Code</Link>
+                        <Link to="#" style={{color: '#eb7724'}}>Demo Link</Link><br /><br />
+                        <Link to="#" style={{color: '#eb7724'}}>Source Code</Link>
                     </div>
                 </div>
                 <div className={styles.projectInfo}>
@@ -115,14 +124,16 @@ export const IndividualProject = (props) => {
 
                     <p className={styles.feedback}><b>Reviews</b></p>
 
-                    {reviews.map((items) => (
-            
+                    {reviews?.map((items) => (
+                      
+                      <>
                       <ProjectReview
 
-                        image={Profile}
-                        username={items.owner}
+                        image={`${baseURL}${items.owner?.profileImage}`}
+                        username={items.owner?.username}
                         comment={items.body}
                       />
+                      </>
             
                     ))}
 
