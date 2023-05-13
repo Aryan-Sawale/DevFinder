@@ -7,7 +7,7 @@ import { TiLocation } from "react-icons/ti";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useAxios } from "../../../utils/useAxios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Modal } from "../../../components/Modal/Modal";
 import { AuthContext } from "../../../context/AuthContext";
 import defaultImage from "../../../assets/default-image.svg";
@@ -103,23 +103,24 @@ export const IndividualDeveloper = () => {
             </div>
             <hr />
 
-            <h2>OTHER SKILLS</h2>
+            <h2>SKILLS</h2>
             <br />
             <div className={styles.otherSkills}>
-              <button className={styles.otherSkillsBtn}>Communication</button>
-              <button className={styles.otherSkillsBtn}>Leadership</button>
-              <button className={styles.otherSkillsBtn}>Communication</button>
-              <button className={styles.otherSkillsBtn}>Communication</button>
+              {skills.map((button) => (
+                <button className={styles.otherSkillsBtn}>{button.name}</button>
+              ))}
             </div>
             <hr />
             <h2>PROJECTS</h2>
             <div className={styles.projectSection}>
               {project?.map((proj) => (
-                <ShortProjectCard
-                  image={proj.featuredImage}
-                  projectName={proj.title}
-                  projectDeveloper={proj.owner}
-                />
+                <Link to="/projects/project" state={{ url: proj.url }}>
+                  <ShortProjectCard
+                    image={proj.featuredImage}
+                    projectName={proj.title}
+                    projectDeveloper={proj.owner}
+                  />
+                </Link>
               ))}
 
               {/* <ShortProjectCard
