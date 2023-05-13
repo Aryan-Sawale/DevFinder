@@ -24,7 +24,7 @@ export const Inbox = () => {
       `user-api/profiles/${currentUUID}/messages/`
     );
     console.log(response);
-    setMessages(response.data.results);
+    setMessages(response.data);
     console.log(messages);
   };
 
@@ -70,6 +70,7 @@ export const Inbox = () => {
                   newModalState[index] = true;
                   setShowModal(newModalState);
                 }}
+                className={styles.cardContainer}
               >
                 <InboxCard
                   key={items.id}
