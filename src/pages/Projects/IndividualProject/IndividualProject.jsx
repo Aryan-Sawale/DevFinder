@@ -39,12 +39,12 @@ export const IndividualProject = (props) => {
       try {
         const reviewData = await api.get(`${url}reviews/`);
         console.log(reviewData);
-        console.log(reviewData.data.results);
+        console.log(reviewData.data);
 
         // const reversedReviews = reviewData.data.results.reverse();
         // setReviews(reversedReviews);
 
-        setReviews(reviewData.data);
+        setReviews(reviewData.data.results);
       } catch (err) {
         // handle errors for this specific await statement
         console.error("Error fetching reviews:", err);
