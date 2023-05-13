@@ -39,7 +39,7 @@ export const IndividualProject = (props) => {
       try {
         const reviewData = await api.get(`${url}reviews/`);
         console.log(reviewData);
-        console.log(reviewData.data);
+        console.log(reviewData.data.results);
 
         // const reversedReviews = reviewData.data.results.reverse();
         // setReviews(reversedReviews);
