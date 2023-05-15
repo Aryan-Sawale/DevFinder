@@ -109,7 +109,7 @@ export const IndividualProject = (props) => {
             </div>
             <div className={styles.projectLinks}>
               <a
-                to={myData.demoLink}
+                href={myData.demoLink}
                 target="_blank"
                 style={{ color: "#eb7724" }}
               >
@@ -118,7 +118,7 @@ export const IndividualProject = (props) => {
               <br />
               <br />
               <a
-                to={myData.sourceLink}
+                href={myData.sourceLink}
                 target="_blank"
                 style={{ color: "#eb7724" }}
               >
