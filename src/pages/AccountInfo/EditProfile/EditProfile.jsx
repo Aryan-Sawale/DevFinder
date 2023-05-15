@@ -247,7 +247,9 @@ export const EditProfile = () => {
             setProfileData({ ...profileData, socialWebsite: e.target.value });
           }}
           value={
-            profileData?.socialWebsite === "null" ? null : profileData?.location
+            profileData?.socialWebsite === "null"
+              ? null
+              : profileData?.socialWebsite
           }
         />
         <br />
