@@ -17,7 +17,7 @@ export const Recommendations = () => {
   const fetchReccommended = async () => {
     const response = await api.get(`user-api/similar/`);
     console.log(response);
-    setUsers(response.data);
+    setUsers(response.data.results);
   };
 
   useEffect(() => {
