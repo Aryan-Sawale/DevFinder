@@ -24,8 +24,9 @@ export const Recommendations = () => {
         fetchedUsers.findIndex((obj) => obj.username === elem.username) ===
         index
     );
-    console.log(filteredUsers);
-    setUsers(response.data.results);
+    console.log("filtered", filteredUsers);
+    setUsers(filteredUsers);
+    // setUsers(response.data.results);
   };
 
   useEffect(() => {
