@@ -117,13 +117,13 @@ export const IndividualProject = (props) => {
               </a>
               <br />
               <br />
-              <Link
+              <a
                 to={myData.sourceLink}
                 target="_blank"
                 style={{ color: "#eb7724" }}
               >
                 Source Code
-              </Link>
+              </a>
             </div>
           </div>
           <div className={styles.projectInfo}>
