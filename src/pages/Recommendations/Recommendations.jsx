@@ -18,6 +18,13 @@ export const Recommendations = () => {
   const fetchReccommended = async () => {
     const response = await api.get(`user-api/similar/`);
     console.log(response);
+    const fetchedUsers = response.data.results;
+    const filteredUsers = fetchedUsers.filter(
+      (elem, index) =>
+        fetchedUsers.findIndex((obj) => obj.username === elem.username) ===
+        index
+    );
+    console.log(filteredUsers);
     setUsers(response.data.results);
   };
 
