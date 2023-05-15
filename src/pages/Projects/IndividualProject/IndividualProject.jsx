@@ -11,6 +11,7 @@ import { useAxios } from "../../../utils/useAxios";
 
 import { ProjectReview } from "../../../components/ProjectReview/ProjectReview";
 import { baseURL } from "../../../utils/config";
+import toast, { Toaster } from "react-hot-toast";
 
 export const IndividualProject = (props) => {
   const [myData, setMyData] = useState([]);
@@ -79,7 +80,7 @@ export const IndividualProject = (props) => {
       console.log(response);
       setShouldFetchProject(true);
     } else {
-      alert("NSFW comments not allowed");
+      toast.error("No NSFW images allowed");
     }
   };
 
@@ -149,9 +150,9 @@ export const IndividualProject = (props) => {
             <p className={styles.feedback}>
               <b>Feedback</b>
             </p>
-            <p className={styles.feedbackInfo}>
+            {/* <p className={styles.feedbackInfo}>
               {myData.voteRatio}% Positive Feedback ({myData.voteTotal} votes)
-            </p>
+            </p> */}
 
             <textarea
               className={styles.commentSection}
@@ -185,6 +186,7 @@ export const IndividualProject = (props) => {
                     <Modal onClose={() => setShow(false)} show={show} /> */}
           </div>
         </div>
+        <Toaster />
       </div>
     </>
   );

@@ -5,6 +5,8 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { baseURL } from "../../../utils/config";
 import { useNavigate } from "react-router-dom";
+import { BounceLoader } from "react-spinners";
+import toast, { Toaster } from "react-hot-toast";
 
 export const EditProfile = () => {
   const location = useLocation();

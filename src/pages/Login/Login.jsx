@@ -14,10 +14,13 @@ import { ForgotPassword } from "../ForgotPassword/ForgotPassword";
 import { baseURL } from "../../utils/config";
 import dayjs from "dayjs";
 import toast, { Toaster } from "react-hot-toast";
+import { BounceLoader } from "react-spinners";
 
 export const Login = () => {
   const [signIn, toggle] = useState(true);
   const [show, setShow] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -32,6 +35,7 @@ export const Login = () => {
   const [registerPassword, setRegisterPassword] = useState("");
 
   const handleLogin = () => {
+    setLoading(true);
     loginUser(signInUsername, signInPassword);
     toast.promise(saveSettings(settings), {
       loading: "Saving...",
@@ -51,7 +55,6 @@ export const Login = () => {
     );
     console.log(response);
     toggle(true);
-    // navigate('/account/edit');
   };
 
   const api = useAxios();
@@ -59,16 +62,15 @@ export const Login = () => {
   const comment = { comment: "Your is so nice" };
 
   const testAuth = async () => {
-    // const response = await axios.post(`${baseURL}/api/token/refresh/`, {refresh : authTokens?.refresh});
+    // const response = await axios.post(`${baseURL}/api/token/refresh/`, {
+    //   refresh: authTokens?.refresh,
+    // });
     // console.log(response);
-    // const user = jwtDecode(authTokens?.access);
+    const user = jwtDecode(authTokens?.access);
     // const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
     // console.log(user);
     // console.log(isExpired);
-    const response = await api.delete(
-      `http://127.0.0.1:8000/user-api/profiles/e10cd488-c8a6-4954-80d1-7677c2df5218/delete/`
-    );
-    console.log(response);
+    console.log("hrllo");
   };
 
   // const sendMessage = aync () => {
@@ -79,6 +81,17 @@ export const Login = () => {
     <>
       <main>
         <div className={styles.wrapper}>
+          <BounceLoader
+            loading={loading}
+            color="#eb7724"
+            size={70}
+            style={{
+              zIndex: "100000000000",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+            }}
+          />
           <div className={styles.container}>
             <div className={styles.formsWraps}>
               <form

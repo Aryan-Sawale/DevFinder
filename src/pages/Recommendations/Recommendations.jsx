@@ -19,6 +19,7 @@ export const Recommendations = () => {
     const response = await api.get(`user-api/similar/`);
     console.log(response);
     const fetchedUsers = response.data.results;
+    // const fetchedUsers = response.data; #for local
     const filteredUsers = fetchedUsers.filter(
       (elem, index) =>
         fetchedUsers.findIndex((obj) => obj.username === elem.username) ===
@@ -36,9 +37,10 @@ export const Recommendations = () => {
   return (
     <>
       <div className={styles.header}>Recommended Developers</div>
+
       <div className={styles.developers}>
-        {users?.map((user) => (
-          <>
+        {users && users.length > 0 ? (
+          users.map((user) => (
             <Link
               to="/developers/developer"
               key={user.url}
@@ -51,38 +53,28 @@ export const Recommendations = () => {
                 image={user.profileImage}
               />
             </Link>
-          </>
-        ))}
-        {/* <DevCard
-          name="ak"
-          position="Frontend developer"
-          bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard
-          name="ak"
-          position="Frontend developer"
-          bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard
-          name="ak"
-          position="Frontend developer"
-          bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard
-          name="ak"
-          position="Frontend developer"
-          bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard
-          name="ak"
-          position="Frontend developer"
-          bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard
-          name="ak"
-          position="Frontend developer"
-          bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        /> */}
+          ))
+        ) : (
+          <div
+            className={styles.noRecommendations}
+            style={{ width: "85vw", textAlign: "left", color: "#fff" }}
+          >
+            {users && users.length === 0 ? (
+              <>
+                <p>
+                  You currently have no recommendations. Please add/update
+                  skills to your profile
+                </p>
+                <button
+                  onClick={() => navigate("/account")}
+                  className={styles.updateProfile}
+                >
+                  Update Profile
+                </button>
+              </>
+            ) : null}
+          </div>
+        )}
       </div>
     </>
   );
