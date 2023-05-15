@@ -108,12 +108,20 @@ export const IndividualProject = (props) => {
                         <button className={styles.toolBtn}>React</button> */}
             </div>
             <div className={styles.projectLinks}>
-              <Link to="#" style={{ color: "#eb7724" }}>
+              <a
+                to={myData.demoLink}
+                target="_blank"
+                style={{ color: "#eb7724" }}
+              >
                 Demo Link
-              </Link>
+              </a>
               <br />
               <br />
-              <Link to="#" style={{ color: "#eb7724" }}>
+              <Link
+                to={myData.sourceLink}
+                target="_blank"
+                style={{ color: "#eb7724" }}
+              >
                 Source Code
               </Link>
             </div>
