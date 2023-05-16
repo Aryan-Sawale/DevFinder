@@ -257,7 +257,9 @@ export const EditProfile = () => {
               setProfileData({ ...profileData, socialTwitter: e.target.value });
             }}
             value={
-              profileData?.socialTwitter === "null" ? null : profileData?.social
+              profileData?.socialTwitter === "null"
+                ? null
+                : profileData?.socialTwitter
             }
           />
           <input
