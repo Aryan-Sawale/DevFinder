@@ -80,7 +80,7 @@ export const IndividualProject = (props) => {
       console.log(response);
       setShouldFetchProject(true);
     } else {
-      toast.error("No NSFW images allowed");
+      toast.error("Profane comments not allowed");
     }
   };
 
