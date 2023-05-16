@@ -92,33 +92,45 @@ export const EditProfile = () => {
     for (const value of imageData.values()) {
       console.log("value ", value);
     }
-    const responseNSFW = await api.post(
-      `${baseURL}project-api/image/mod/`,
-      imageData
-    );
-    console.log(responseNSFW);
+    // const responseNSFW = await api.post(
+    //   `${baseURL}project-api/image/mod/`,
+    //   imageData
+    // );
+    // console.log(responseNSFW);
 
-    if (responseNSFW.data.prediction != "image is nsfw") {
-      const profileUrl = location.state.url;
-      const response = await api.post(`${profileUrl}update/`, formData);
-      console.log(response);
-      navigate(`/account/`);
-    } else {
-      // alert("No NSFW images allowed")
-      setLoading(false);
-      toast.error("No NSFW images allowed");
-    }
+    // if (responseNSFW.data.prediction != "image is nsfw") {
+    //   const profileUrl = location.state.url;
+    //   const response = await api.post(`${profileUrl}update/`, formData);
+    //   console.log(response);
+    //   navigate(`/account/`);
+    //   setLoading(false);
+    // } else {
+    //   // alert("No NSFW images allowed")
+    //   setLoading(false);
+    //   toast.error("No NSFW images allowed");
+    // }
 
-    // const profileUrl = location.state.url;
-    // const response = await api.post(`${profileUrl}update/`, formData);
-    // console.log(response);
-    // navigate(`/account/`);
+    const profileUrl = location.state.url;
+    const response = await api.post(`${profileUrl}update/`, formData);
+    setLoading(false);
+    console.log(response);
+    navigate(`/account/`);
   };
 
-  // if (!loading){
-  //   return(
-  //     <BounceLoader loading={loading} color='#eb7724' size={70} style={{zIndex: '100000000000', position: 'absolute', top: '50%', left: '50%' }} />
-  //   )
+  // if (!loading) {
+  //   return (
+  //     <BounceLoader
+  //       loading={loading}
+  //       color="#eb7724"
+  //       size={70}
+  //       style={{
+  //         zIndex: "100000000000",
+  //         position: "absolute",
+  //         top: "50%",
+  //         left: "50%",
+  //       }}
+  //     />
+  //   );
   // }
 
   return (
