@@ -6,11 +6,11 @@ import { AuthContext } from "../../context/AuthContext";
 import { useContext, useState } from "react";
 import { baseURL } from "../../utils/config";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Recommendations = () => {
   const { currentUUID } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const api = useAxios();
 
   const [users, setUsers] = useState([]);
