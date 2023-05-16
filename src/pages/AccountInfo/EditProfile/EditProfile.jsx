@@ -117,21 +117,21 @@ export const EditProfile = () => {
     navigate(`/account/`);
   };
 
-  // if (!loading) {
-  //   return (
-  //     <BounceLoader
-  //       loading={loading}
-  //       color="#eb7724"
-  //       size={70}
-  //       style={{
-  //         zIndex: "100000000000",
-  //         position: "absolute",
-  //         top: "50%",
-  //         left: "50%",
-  //       }}
-  //     />
-  //   );
-  // }
+  if (loading) {
+    return (
+      <BounceLoader
+        loading={loading}
+        color="#eb7724"
+        size={70}
+        style={{
+          zIndex: "100000000000",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+        }}
+      />
+    );
+  }
 
   return (
     <>
