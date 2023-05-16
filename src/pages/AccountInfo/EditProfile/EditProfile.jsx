@@ -49,7 +49,7 @@ export const EditProfile = () => {
   const [bio, setBio] = useState("");
   const [shortIntro, setShortIntro] = useState("");
   const [socialGithub, setSocialGithub] = useState("");
-  const [SocialHashnode, setSocialHashnode] = useState("");
+  const [socialHashnode, setsocialHashnode] = useState("");
   const [socialTwitter, setSocialTwitter] = useState("");
   const [socialYoutube, setSocialYoutube] = useState("");
   const [socialWebsite, setSocialWebsite] = useState("");
@@ -240,13 +240,13 @@ export const EditProfile = () => {
             onChange={(e) => {
               setProfileData({
                 ...profileData,
-                SocialHashnode: e.target.value,
+                socialHashnode: e.target.value,
               });
             }}
             value={
-              profileData?.SocialHashnode === "null"
+              profileData?.socialHashnode === "null"
                 ? null
-                : profileData?.SocialHashnode
+                : profileData?.socialHashnode
             }
           />
           <input
