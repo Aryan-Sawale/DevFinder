@@ -119,7 +119,7 @@ export const Home = () => {
             <br />
             <br />
             Join our community today and start connecting with developers within
-            your college. With DevFinder, you're never alone on your journey
+            your college. With DevFinder, you are never alone on your journey
             towards success.
           </p>
         </div>
