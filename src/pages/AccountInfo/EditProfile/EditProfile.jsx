@@ -65,7 +65,7 @@ export const EditProfile = () => {
     formData.append("bio", profileData.bio);
     formData.append("shortIntro", profileData.shortIntro);
     formData.append("socialGithub", profileData.socialGithub);
-    formData.append("SocialHashnode", profileData.SocialHashnode);
+    formData.append("SocialHashnode", profileData.socialHashnode);
     formData.append("socialTwitter", profileData.socialTwitter);
     formData.append("socialYoutube", profileData.socialYoutube);
     formData.append("socialWebsite", profileData.socialWebsite);
