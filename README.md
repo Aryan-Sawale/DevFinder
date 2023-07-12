@@ -22,24 +22,12 @@ Go to the project directory
   cd DevFinder
 ```
 
-Install dependencies
-
-```bash
-  pip install -r requirements.txt
-```
-
-Start the server
-
-```bash
-  python manage.py runserver
-```
-Now in a separate terminal, switch the branch to dev/frontend
-
 ```bash
   git checkout dev/frontend
 ```
 Then, 
 
+Install dependencies
 ```bash
   npm i --force
 ```
