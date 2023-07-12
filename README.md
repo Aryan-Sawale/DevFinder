@@ -18,10 +18,6 @@ Go to the project directory
 ```bash
   cd DevFinder
 ```
-
-```bash
-  git checkout dev/frontend
-```
 Then, 
 
 Install dependencies
