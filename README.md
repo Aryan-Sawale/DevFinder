@@ -6,9 +6,6 @@ Site url: [https://dev-finder-5b30d7.netlify.app/](https://dev-finder-5b30d7.net
 
 
 ## Run Locally
-In order to run this project locally you need to run the backend and the frontend simultaneously.
-
-For running the backend:
 
 Clone the project
 
