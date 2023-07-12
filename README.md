@@ -2,6 +2,7 @@
 # DevFinder - A developer-centric social media
 
 DevFinder is a social platform built for developers. It enables developers to connect, share and learn from each other. Our main motto is to help developers collaborate easily and work in teams efficiently.
+Site url: [https://dev-finder-5b30d7.netlify.app/](https://dev-finder-5b30d7.netlify.app/)
 
 
 ## Run Locally
@@ -12,7 +13,7 @@ For running the backend:
 Clone the project
 
 ```bash
-  git clone https://github.com/atharvabhide/DevFinder.git
+  git clone https://github.com/Aryan-Sawale/DevFinder.git
 ```
 
 Go to the project directory
